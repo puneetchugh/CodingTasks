@@ -2,6 +2,7 @@ package com.puneet.user;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BST {
 
@@ -29,6 +30,7 @@ public class BST {
 		  binarySearchTree.inOrder(binarySearchTree.head.right);
 		  System.out.println("Printing level-order...");
 		  binarySearchTree.levelOrderTraversal(binarySearchTree.head.right);
+		  binarySearchTree.reverseLevelOrderTraversal(binarySearchTree.head.right);
 	  }
 	  public Node createANode(String name){
 	    
@@ -238,5 +240,32 @@ public class BST {
 			  }
 		  }
 	  }
+	  
+	  public void reverseLevelOrderTraversal(Node root){
+		  
+		  Stack<String> stack = new Stack();
+		  Queue<Node> queue = new LinkedList<Node>();
+		  
+		  queue.add(root);
+		  while(!queue.isEmpty()){
+			  Node dequeuedNode = queue.remove();
+			  stack.push(dequeuedNode.name);
+			  //System.out.println(dequeuedNode.name);
+			  if(dequeuedNode.right != null){
+				  queue.add(dequeuedNode.right);
+			  }
+			  
+			  if(dequeuedNode.left != null){
+				  queue.add(dequeuedNode.left);
+			  }
+		  }
+		  
+		  System.out.println("Printing Reverse Level Order Traversal : ");
+		  while(!stack.isEmpty()){
+			  System.out.println(stack.pop());
+		  }
+	  }
+	  
+	  
 	  
 }
