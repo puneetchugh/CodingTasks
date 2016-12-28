@@ -16,21 +16,25 @@ public class BST {
 		  BST binarySearchTree = new BST();
 		  binarySearchTree.addANode("Kaku");
 		  binarySearchTree.addANode("Puneet");
-		  //binarySearchTree.addANode("Kamnran");
+		  binarySearchTree.addANode("Aman");
+		  binarySearchTree.addANode("Bunny");
 		  binarySearchTree.addANode("Kamran");
 		  binarySearchTree.addANode("Rakesh");
-		  //binarySearchTree.addANode("Qin");
+		  binarySearchTree.addANode("Qin");
 		  binarySearchTree.addANode("Sagar");
 		  System.out.println("Printing In-order...");
 		  binarySearchTree.inOrder(binarySearchTree.head.right);
 		  //binarySearchTree.postOrder(binarySearchTree.head);
 		  //binarySearchTree.inOrder(binarySearchTree.head);
-		  binarySearchTree.deleteANode("Rakesh");
+		  //binarySearchTree.deleteANode("Rakesh");
 		  System.out.println("Printing In-order...");
 		  binarySearchTree.inOrder(binarySearchTree.head.right);
 		  System.out.println("Printing level-order...");
 		  binarySearchTree.levelOrderTraversal(binarySearchTree.head.right);
+		  System.out.println("Printing Reverse Level Order Traversal of BST...");
 		  binarySearchTree.reverseLevelOrderTraversal(binarySearchTree.head.right);
+		  System.out.println("Printing Spiral Order Traversal of BST...");
+		  binarySearchTree.spiralOrderTraversal(binarySearchTree.head.right);
 	  }
 	  public Node createANode(String name){
 	    
@@ -260,12 +264,40 @@ public class BST {
 			  }
 		  }
 		  
-		  System.out.println("Printing Reverse Level Order Traversal : ");
 		  while(!stack.isEmpty()){
 			  System.out.println(stack.pop());
 		  }
 	  }
-	  
+	 
+	  public void spiralOrderTraversal(Node root){
+		  
+		  int counter = 0;
+		  Queue<Node> queue = new LinkedList<Node>();
+		  queue.add(root);
+		  while(!queue.isEmpty()){
+			  Node dequeuedNode = queue.remove();
+			  System.out.println(dequeuedNode.name);
+			  
+			  if(counter%2 == 0){
+				  //System.out.println(dequeuedNode.name);
+				  if(dequeuedNode.left != null){
+					  queue.add(dequeuedNode.left);
+				  }	  
+				  if(dequeuedNode.right != null){
+					  queue.add(dequeuedNode.right);
+				  }
+			  }
+			  else{
+				  if(dequeuedNode.right != null){
+					  queue.add(dequeuedNode.right);
+				  }		  
+				  if(dequeuedNode.left != null){
+					  queue.add(dequeuedNode.left);
+				  }
+			  }
+			  counter++;
+		  }	 
+	  }
 	  
 	  
 }
